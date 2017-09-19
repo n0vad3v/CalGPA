@@ -2,7 +2,7 @@ from functools import reduce
 import re
 import sys
 
-with open(sys.argv[1],'r') as src:
+with open(sys.argv[1],'r',encoding = 'utf-8') as src:
     data = src.read().replace('\n','').replace('\t','').replace('中','75').replace('优','95').replace('良','85').replace('<font color="red">','').replace('</font>','')
 
 total = re.findall('<td align="center"><b>(.*?)</b></td>',data)[1]
@@ -10,7 +10,7 @@ total = re.findall('<td align="center"><b>(.*?)</b></td>',data)[1]
 datastr = ''
 findtr = re.findall('<tr>(.*?)</tr>',data)
 
-# For cleanning the chaos data
+# For cleaning the chaos data
 newtr = []
 for i in findtr:
     if 'color' not in i and 'align' not in i and '<td>&nbsp;</td><td>&nbsp;</td>' not in i and 'Nsb_r_list_thb' not in i:
