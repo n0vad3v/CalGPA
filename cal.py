@@ -3,7 +3,7 @@ import re
 import sys
 
 with open(sys.argv[1],'r',encoding = 'utf-8') as src:
-    data = src.read().replace('\n','').replace('\t','').replace('中','75').replace('优','95').replace('良','85').replace('<font color="red">','').replace('</font>','')
+    data = src.read().replace('\n','').replace('\t','').replace('中','75').replace('优','95').replace('良','85').replace('及格','65').replace('<font color="red">','').replace('</font>','')
 
 total = re.findall('<td align="center"><b>(.*?)</b></td>',data)[1]
 
@@ -23,7 +23,7 @@ for i in newtr:
     credit.append(data[2])
     score.append(data[5])
 
-score = list(map(int,score))
+score = list(map(float,score))
 credit = list(map(float,credit))
 sumup = reduce(lambda x,y:x+y,credit)
 floatscore = map(lambda x:(x-50)/10,score)
